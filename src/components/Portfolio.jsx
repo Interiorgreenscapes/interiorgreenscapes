@@ -100,9 +100,30 @@ const Portfolio = ({ isFullPage = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardOrigin, setCardOrigin] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const gridRef = useRef(null);
 
   // Touch/drag support
   const dragStart = useRef(null);
+
+  useEffect(() => {
+    if (isFullPage) return;
+    const grid = gridRef.current;
+    if (!grid) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const reveals = entry.target.querySelectorAll("[data-reveal]");
+          reveals.forEach((el, i) => {
+            setTimeout(() => el.classList.add("revealed"), i * 120);
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, [isFullPage]);
 
   const openGallery = (category, e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -185,7 +206,7 @@ const Portfolio = ({ isFullPage = false }) => {
         )}
 
         {/* Feature Cards Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+        <div ref={gridRef} className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {categories.map((cat) => (
             <div
               key={cat.id}
@@ -194,6 +215,7 @@ const Portfolio = ({ isFullPage = false }) => {
               tabIndex={0}
               role="button"
               aria-label={`View ${cat.title} gallery`}
+              data-reveal={isFullPage ? undefined : ""}
               className="group relative overflow-hidden rounded-xl md:rounded-2xl cursor-pointer aspect-[3/4] focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-400 focus-visible:ring-offset-2"
             >
               <img

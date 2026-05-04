@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { analytics } from "../utils/analytics";
@@ -64,6 +65,26 @@ const services = [
 
 const Services = ({ showAll = false }) => {
   const displayedServices = showAll ? services : services.slice(0, 3);
+  const gridRef = useRef(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const reveals = entry.target.querySelectorAll("[data-reveal]");
+          reveals.forEach((el, i) => {
+            setTimeout(() => el.classList.add("revealed"), i * 120);
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="py-24 bg-gradient-to-b from-white to-sage-50">
@@ -83,12 +104,12 @@ const Services = ({ showAll = false }) => {
         )}
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedServices.map((service) => (
-            <div
-              key={service.title}
-              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col"
-            >
+            <div key={service.title} data-reveal className="flex">
+              <div
+                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col w-full"
+              >
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={service.image}
@@ -119,6 +140,7 @@ const Services = ({ showAll = false }) => {
                   Learn More
                   <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
                 </Link>
+              </div>
               </div>
             </div>
           ))}
