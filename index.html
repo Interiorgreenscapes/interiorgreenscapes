@@ -9,15 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Raleway:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-    <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID with your actual ID (e.g. G-XXXXXXXXXX) -->
-    <!-- Or set VITE_GA_MEASUREMENT_ID in your .env file -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
+    <!-- Google Analytics 4 is loaded dynamically in src/main.jsx when VITE_GA_MEASUREMENT_ID is set -->
+
   <style>
     #ig-loader {
       position: fixed;
@@ -44,8 +37,8 @@
       50%       { opacity: 0.7; transform: scale(1.05); }
     }
   </style>
-    <script type="module" crossorigin src="/interiorgreenscapes/assets/index-BZ8aF1F3.js"></script>
-    <link rel="stylesheet" crossorigin href="/interiorgreenscapes/assets/index-F0wiigr5.css">
+    <script type="module" crossorigin src="/interiorgreenscapes/assets/index-Bxv7is2p.js"></script>
+    <link rel="stylesheet" crossorigin href="/interiorgreenscapes/assets/index-Baj5owBT.css">
   </head>
   <body>
     <!-- Loading screen — hidden once fonts + JS are ready -->
@@ -56,7 +49,7 @@
         <path d="M32 28 C32 28 44 36 42 46" stroke="#c5d4b8" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </div>
-    <div id="root"></div>
+    <div id="root"></div>
     <script>
       document.fonts.ready.then(function () {
         requestAnimationFrame(function () {
