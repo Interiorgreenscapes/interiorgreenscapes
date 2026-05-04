@@ -29,3 +29,6 @@ Interior-greenscapes-pics/
 # Local agent scaffolding (impeccable skill, etc.)
 .agents/
 skills-lock.json
+
+# Claude Code — keep shared settings/skills, ignore personal overrides
+.claude/settings.local.json
