@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jraharris89.github.io/interiorgreenscapes/",
+  "homepage": "https://interiorgreenscapes.github.io/interiorgreenscapes/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
