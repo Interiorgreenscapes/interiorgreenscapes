@@ -319,17 +319,10 @@ const Contact = ({ isFullPage = false }) => {
                       className="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-200 outline-none transition-all bg-white"
                     >
                       <option value="">Select a service...</option>
-                      <option value="interior-plantscaping">
-                        Interior Plantscaping
-                      </option>
-                      <option value="green-walls">Green Walls</option>
-                      <option value="atrium-design">Atrium Design</option>
-                      <option value="holiday-decorations">
-                        Holiday Decorations
-                      </option>
-                      <option value="color-program">Color Program</option>
-                      <option value="maintenance">Plant Maintenance</option>
-                      <option value="other">Other</option>
+                      <option value="New-Project">New Project</option>
+                      <option value="Holiday-Decorations">Holiday Decorations</option>
+                      <option value="Plants-Maintenance">Plants Maintenance</option>
+                      <option value="General Inquiry">General Inquiry</option>  
                     </select>
                   </div>
 
