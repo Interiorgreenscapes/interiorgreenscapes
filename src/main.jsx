@@ -15,6 +15,13 @@ if (GA_ID) {
   window.gtag('config', GA_ID, { send_page_view: false })
 }
 
+// Handle GitHub Pages redirect
+const params = new URLSearchParams(window.location.search);
+const redirect = params.get('redirect');
+if (redirect) {
+  window.history.replaceState(null, '', redirect);
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
